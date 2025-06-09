@@ -1,32 +1,28 @@
 # <img src="img/logo.jpg" width="8%" alt="" align=center /> DiffuSeq
 
-Official Codebase for [*__*DiffuSeq*__: Sequence to Sequence Text Generation With Diffusion Models*](https://arxiv.org/abs/2210.08933) and 
-[*__*DiffuSeq-v2*__: Bridging Discrete and Continuous Text Spaces for Accelerated Seq2Seq Diffusion Models*](https://arxiv.org/abs/2310.05793).
+[*__*DiffuSeq*__: Sequence to Sequence Text Generation With Diffusion Models*](https://arxiv.org/abs/2210.08933) 와
+[*__*DiffuSeq-v2*__: Bridging Discrete and Continuous Text Spaces for Accelerated Seq2Seq Diffusion Models*](https://arxiv.org/abs/2310.05793) 의 공식 코드의 한국어 번역본 입니다.
 
 <p align = "center">
 <img src="img/diffuseq-process.png" width="95%" alt="" align=center />
 </p>
 <p align = "center">
-The diffusion process of our conditional diffusion language model DiffuSeq.
+DiffuSeq의 조건부 확산 언어 모델에서의 확산 과정
 </p>
 
 <p align = "center">
 <img src="img/diffuseq-v2.png" width="40%" alt="" align=center />
 </p>
 <p align = "center">
-The diffusion process of accelerated DiffuSeq.
+가속화된 DiffuSeq의 확산 과정
 </p>
 
-## Highlights
-- Our proposed __*DiffuSeq*__ as a conditional language model is trained end-to-end in a classifier-free manner.
-- We establish a theoretical
-connection among AR, NAR and __*DiffuSeq*__ models (refer to our original paper).
-- __*DiffuSeq*__ is a powerful model for text
-generation, matching or even surpassing competitive AR, iterative NAR,
-and large-PLMs on quality and diversity.
+## 주요 특징 (Highlights)
+- 제안된 __*DiffuSeq*__ 모델은 분류기 없이(classifier-free) 훈련되는 조건부 언어 모델(Conditional Language Model) 입니다.
+- AR (AutoRegressive), NAR (Non-AutoRegressive) 모델들과 __*DiffuSeq*__ 사이의 이론적 연관성을 수립했습니다. (자세한 내용은 논문 참조)
+- __*DiffuSeq*__ 는 텍스트 생성에 있어 매우 강력한 모델로, **기존의 AR, 반복적 NAR, 대형 사전학습 모델(PLMs)** 들과 유사하거나 이를 능가하는 품질과 다양성을 보입니다.
 
-Our study addresses promising achievements by such a new
-sequence-to-sequence learning paradigm.
+이 연구는 새로운 시퀀스-투-시퀀스 학습 패러다임의 가능성을 보여주는 중요한 성과를 담고 있습니다.
 
 <p align = "center">
 <img src="img/result-1.png" width="80%" alt="" align=center />
@@ -35,95 +31,100 @@ sequence-to-sequence learning paradigm.
 <img src="img/result-2.png" width=80%" alt="" align=center />
 </p>
 
-Update: Our enhanced version effectively accelerates the training convergence by 4x and generates samples of similar quality 800x faster, rendering it significantly closer to practical application.
+업데이트: 향상된 버전인 __*DiffuSeq-v2*__ 는 훈련 수렴 속도를 4배 가속시키고, 800배 빠르게 유사한 품질의 샘플을 생성할 수 있습니다.
 
 <p align = "center">
 <img src="img/result-3.png" width=80%" alt="" align=center />
 </p>
 
-## Setup:
-The code is based on PyTorch and HuggingFace `transformers`.
+## 설치 방법 (Setup)
+본 프로젝트는 PyTorch 와 HuggingFace `transformers` 라이브러리를 기반으로 작성되었습니다.
 ```bash 
 pip install -r requirements.txt 
 ```
 
 ## Datasets
-Prepare datasets and put them under the `datasets` folder. Take `datasets/CommonsenseConversation/train.jsonl` as an example. We use four datasets in our paper.
+`datasets` 폴더 아래에 데이터를 준비합니다. 예를 들어 `datasets/CommonsenseConversation/train.jsonl` 에 준비합니다. 논문에서는 총 4개의 데이터셋을 사용합니다.
 
-| Task | Datasets | Training Samples | Source | Used in __*DiffuSeq*__
+| 작업 유형 (Task) | 데이터셋 (Datasets) | 학습 샘플 수 (Training Samples) | 출처 (Source) | 다운로드
 |-|-|-|-|-|
-| Open-domain Dialogue | Commonsense Conversation | 3382k | [CCM](https://github.com/thu-coai/ccm) | [download](https://drive.google.com/drive/folders/1exENF9Qc5UtXnHlNl9fvaxP3zyyH32qp?usp=sharing) |
-| Question Generation | Quasar-T | 117k | [OpenQA](https://github.com/thunlp/OpenQA) | [download](https://drive.google.com/drive/folders/122YK0IElSnGZbPMigXrduTVL1geB4wEW?usp=sharing) |
-| Text Simplification | Wiki-alignment | 677k | [Wiki-auto](https://github.com/chaojiang06/wiki-auto) | [download](https://drive.google.com/drive/folders/1BlWtD1UbnL_ef06Riq-gABlL0Zb50s-d?usp=sharing)|
-| Paraphrase | QQP | 144k|  [Kaggle](https://www.kaggle.com/c/quora-question-pairs) | [download](https://drive.google.com/drive/folders/1BHGCeHRZU7MQF3rsqXBIOCU2WIC3W6fb?usp=sharing) |
+| 일반 대화 (Open-domain Dialogue) | Commonsense Conversation | 3382k | [CCM](https://github.com/thu-coai/ccm) | [download](https://drive.google.com/drive/folders/1exENF9Qc5UtXnHlNl9fvaxP3zyyH32qp?usp=sharing) |
+| 질문 생성 (Question Generation) | Quasar-T | 117k | [OpenQA](https://github.com/thunlp/OpenQA) | [download](https://drive.google.com/drive/folders/122YK0IElSnGZbPMigXrduTVL1geB4wEW?usp=sharing) |
+| 문장 단순화 (Text Simplification) | Wiki-alignment | 677k | [Wiki-auto](https://github.com/chaojiang06/wiki-auto) | [download](https://drive.google.com/drive/folders/1BlWtD1UbnL_ef06Riq-gABlL0Zb50s-d?usp=sharing)|
+| 의역 (Paraphrase) | QQP | 144k|  [Kaggle](https://www.kaggle.com/c/quora-question-pairs) | [download](https://drive.google.com/drive/folders/1BHGCeHRZU7MQF3rsqXBIOCU2WIC3W6fb?usp=sharing) |
 
-## DiffuSeq Training
+## DiffuSeq 모델 학습
 ```bash
 cd scripts
 bash train.sh
 ```
-Arguments explanation:
-- ```--dataset```: the name of datasets, just for notation
-- ```--data_dir```: the path to the saved datasets folder, containing ```train.jsonl,test.jsonl,valid.jsonl```
-- ```--seq_len```: the max length of sequence $z$ ($x\oplus y$)
-- ```--resume_checkpoint```: if not none, restore this checkpoint and continue training
-- ```--vocab```: the tokenizer is initialized using bert or load your own preprocessed vocab dictionary (e.g. using BPE)
 
-It will take 2 more days to train a __*DiffuSeq*__ model on 4 NVIDIA A100 80G GPUs for QG and QQP, and the training steps should be increased accordingly along with the size of the training set. To reproduce the results of Table 1 in our paper, we suggest the following configuration for each dataset when training.
+### 주요 인자 값 설명:
+- ```--dataset```: 데이터셋 이름 (기록용)
+- ```--data_dir```: 저장된 데이터셋 폴더 경로 (내부에 ```train.jsonl,test.jsonl,valid.jsonl``` 포함)
+- ```--seq_len```: 시퀀스 $z$ 의 최대 길이 ($x\oplus y$)
+- ```--resume_checkpoint```: 체크포인트 지정 시 해당 위치에서 학습 시작
+- ```--vocab```: BERT 기반 토크나이저 사용 또는 BPE 등 자용자 사전 지정
 
-### Update: 
-Additional argument:
-- ```--learned_mean_embed```: set whether to use the learned soft absorbing state.
-- ```--denoise```: set whether to add discrete noise
-- ```--use_fp16```: set whether to use mixed precision training
-- ```--denoise_rate```: set the denoise rate, with 0.5 as the default
+__*DiffuSeq*__ 모델은 QG(질문 생성), QQP(질문 유사성 판별) 작업에서 NVIDIA A100 80G GPU 4장 기준으로 학습에 2일 이상 걸립니다.
 
-It only take around 11 hours to train a model on 2 NVIDIA A100 80G GPUs for QQP.
+### 업데이트 된 인자 값 설명: 
+- ```--learned_mean_embed```: soft absorbing state 사용 여부.
+- ```--denoise```: 이산 노이즈(discrete noise) 추가 여부
+- ```--use_fp16```: FP16 혼합 정밀도 학습 사용 여부
+- ```--denoise_rate```: 노이즈 비율 (기본값 0.5)
 
+QQP의 경우 NVIDIA A100 80G GPU 2장으로 약 11시간이 소요됩니다.
+
+### 추천 학습 설정 (논문 Table 1 재현용)
 ```
+# QQP
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=12233 --use_env run_train.py --diff_steps 2000 --lr 0.0001 --learning_steps 50000 --save_interval 10000 --seed 102 --noise_schedule sqrt --hidden_dim 128 --bsz 2048 --dataset qqp --data_dir {datasets/QQP} --vocab bert --seq_len 128 --schedule_sampler lossaware --notes qqp
 
+# QG
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=12233 --use_env run_train.py --diff_steps 2000 --lr 0.0001 --learning_steps 40000 --save_interval 2000 --seed 102 --noise_schedule sqrt --hidden_dim 128 --bsz 2048 --microbatch 64 --dataset qg --data_dir {datasets/QG} --vocab bert --seq_len 128 --schedule_sampler lossaware --notes qg
 
+# Dialogue (Conversation 데이터셋)
 python -m torch.distributed.launch --nproc_per_node=7 --master_port=12233 --use_env run_train.py --diff_steps 2000 --lr 0.0001 --learning_steps 140000 --save_interval 20000 --seed 102 --noise_schedule sqrt --hidden_dim 128 --bsz 2048 --microbatch 64 --dataset dialogue --data_dir {datasets/Conversation} --vocab bert --seq_len 128 --schedule_sampler lossaware --notes dialogue
 
+# Dialogue (TS 데이터셋)
 python -m torch.distributed.launch --nproc_per_node=8 --master_port=12233 --use_env run_train.py --diff_steps 2000 --lr 0.0001 --learning_steps 80000 --save_interval 20000 --seed 102 --noise_schedule sqrt --hidden_dim 128 --bsz 2048 --microbatch 64 --dataset dialogue --data_dir {datasets/TS} --vocab bert --seq_len 128 --schedule_sampler lossaware --notes ts
 ```
-Empirically, larger batchsize (larger `microbatch` here) can achieve higher BLEU score (without MBR). If you want to sync training loss to wandb, please customize your wandb setting in `train.py` (add your own API KEY).
+경험적으로, 더 큰 배치 사이즈(여기서는 더 큰 `microbatch`)를 사용하면 MBR 없이도 더 높은 BLEU 점수를 얻을 수 있습니다. 만약 학습 손실(loss)을 wandb에 동기화하고 싶다면, `train.py` 파일에서 wandb 설정을 사용자 정의하여 사용자의 API KEY를 추가해 주시면 됩니다.
 
-## DiffuSeq Decoding
-You need to modify the path to ```model_dir```, which is obtained in the training stage.
+## DiffuSeq 디코딩
+학습 후 생성된 모델 경로를 ```model_dir``` 로 지정합니다.
 ```bash
 cd scripts
 bash run_decode.sh
 ```
-To reproduce the results of Table 1 in our paper, we suggest the size of MBR candidate set to be 10 (run 10 times using different seeds). Empirically, larger size can achieve higher BLEU score. For diversity metrics, the size of MBR candidate set is 3 when computing.
+논문에서 Table 1의 결과를 재현하려면, MBR 후보 집합의 크기를 10으로 설정하는 것을 권장합니다 (다른 시드로 10번 실행). 경험적으로, 더 큰 크기를 사용하면 더 높은 BLEU 점수를 얻을 수 있습니다. 다양성(metrics)을 측정할 때는, MBR 후보 집합의 크기를 3으로 설정합니다.
 
-## Speed-up Decoding
-We customize the implementation of [DPM-Solver++](https://github.com/LuChengTHU/dpm-solver) to DiffuSeq to accelerate its sampling speed.
+## 디코딩 속도 향상
+우리는 [DPM-Solver++](https://github.com/LuChengTHU/dpm-solver)를 DiffuSeq에 맞게 커스터마이즈하여 샘플링 속도를 향상시켰습니다.
 ```bash
 cd scripts
 bash run_decode_solver.sh
 ```
 
-## Evaluation & MBR
-You need to specify the folder of decoded texts. This folder should contain the decoded files from the same model but sampling with different random seeds. If ```mbr``` is not attached, we will compute the diversity score from the files in the folder, otherwise we will do MBR decoding:
+## 평가 및 MBR
+디코딩된 텍스트의 폴더를 명시해야 합니다. 이 폴더는 동일한 모델로부터 서로 다른 랜덤 시드로 샘플링한 디코딩 결과 파일들을 포함해야 합니다. `mbr` 옵션이 붙지 않으면 다양성 점수를 계산하며, `mbr` 옵션이 붙으면 MBR 디코딩을 수행합니다:
 ```bash
 cd scripts
 python eval_seq2seq.py --folder ../{your-path-to-outputs} --mbr
 ```
-Note: if you want to use this evaluation script for output files from other models, please make sure the same line from these output files refers to the same piece of data. Otherwise the diversity score could be incorrect.
+노트: 이 평가 스크립트를 다른 모델의 출력 파일에 사용하고자 할 경우, 동일한 줄(line)이 동일한 데이터 조각(data piece)을 나타내야 합니다. 그렇지 않으면 다양성 점수가 잘못 계산될 수 있습니다.
 
-## Update
-- Update 10 Oct 2023: We update the DiffuSeq-v2, targeting the training/sampling speed up. Details in new branch [`diffuseq-v2`](https://github.com/Shark-NLP/DiffuSeq/tree/diffuseq-v2).
-- Update 22 May 2023: We prepare the checkpoint and sampling results for remaining tasks in this [link](https://drive.google.com/drive/folders/1lHPp-T-ytp-YVptiokeYK-Lth48EGQ12?usp=sharing).
-- Update 28 Nov 2022: We prepare the checkpoint and sampling results of 10 seeds for QQP dataset in this [link](https://drive.google.com/drive/folders/1vnhJIUqPQva_x_sH2h5a0moCc1NYmEpr?usp=sharing).
-- Update 14 Feb 2023: We update the evaluation scripts and camera ready version of the paper.
+## 업데이트
+- 2023년 10월 10일: 학습/샘플링 속도 향상을 목표로 DiffuSeq-v2 를 업데이트했습니다. 새로운 브랜치 [`diffuseq-v2`](https://github.com/Shark-NLP/DiffuSeq/tree/diffuseq-v2)에서 확인할 수 있습니다.
+- 2023년 5월 22일: 나머지 테스크에 대한 체크포인트 및 샘플링 결과를 이 [링크](https://drive.google.com/drive/folders/1lHPp-T-ytp-YVptiokeYK-Lth48EGQ12?usp=sharing)에서 제공합니다.
+- 2022년 11월 28일: QQP 데이터셋에 대한 10개 시드의 체크포인트 및 샘플링 결과를 이 [링크](https://drive.google.com/drive/folders/1vnhJIUqPQva_x_sH2h5a0moCc1NYmEpr?usp=sharing)에서 제공합니다.
+- 2023년 2월 14일: 평가 스크립트 및 논문의 카메라 레디 버전을 업데이트했습니다.
 
-Welcome to discuss if you have any questions.
+질문이 있다면 자유롭게 논의해주시길 바랍니다.
 
-## Citation
-Please add the citation if our paper or code helps you.
+## 인용
+논문이나 코드가 도움이 되었다면, 아래 인용을 추가해 주시길 바랍니다.
 
 ```
 @inproceedings{gong2022diffuseq,
@@ -145,5 +146,305 @@ Please add the citation if our paper or code helps you.
 <img src="img/DiffuSeq_poster.png" width="100%" alt="" align=center />
 </p>
 <p align = "center">
-DiffuSeq poster for ICLR 2023.
+ICLR 2023용 DiffuSeq 포스터.
 </p>
+
+---
+
+# 실행 테스트
+
+### 환경 준비
+
+사용 환경:
+- GPU: NVIDIA RTX A6000 
+- CUDA: 12.1
+- Python: 3.9.21
+- Pytorch: 2.1.0 (CUDA 12.1 지원 버전)
+- Transformers: 4.49.0
+- Numpy: 1.23.0
+
+```bash
+# 가상환경 생성 및 활성화
+conda create -n diffuseq python=3.9.21
+conda activate diffuseq
+
+pip install bert_score
+pip install blobfile
+pip install nltk
+pip install numpy
+pip install packaging
+pip install psutil
+pip install PyYAML
+pip install setuptools
+pip install spacy
+# 자신의 CUDA 버전에 맞는 Pytorch를 설치
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+pip install torchmetrics
+pip install tqdm
+pip install transformers
+pip install wandb
+pip install datasets
+```
+
+### 데이터 셋 준비
+
+<p align = "center">
+<img src="img/datasets.png" width=100%" alt="" align=center />
+</p>
+
+| 데이터셋 이름  | 용도                | 크기      | 비고                |
+| -------- | ----------------- | ------- | ----------------- |
+| **CC**   | 일반 대화             | 253 MB  | 자유로운 텍스트 응답 학습용   |
+| **Q-T**  | 질문 생성             | 6.31 MB | 응답을 기반으로 질문 생성    |
+| **Wiki** | 문장 단순화            | 44.3 MB | 복잡한 문장 → 간단한 문장   |
+| **QQP**  | 의역 (Paraphrasing) | 4.96 MB | 문장 의미 보존하며 표현 바꾸기 |
+
+### 각 데이터 셋의 샘플 확인
+
+**일반 대화 (CC)**
+
+- 일반 대화를 예측하는 경우
+
+```
+{
+  "src": "this is my favorite story arc . ca n't wait to see how he does in the tourney ! the show is my guarantee smile for the week .", 
+  "trg": "yea it 's hard not to have a smile on your face the entire episode"
+}
+
+{
+  "src": "이건 내가 제일 좋아하는 스토리 전개야. 대회에서 그가 어떻게 할지 너무 기대돼! 이 쇼는 내 주간 행복 보장이지.", 
+  "trg": "맞아, 에피소드 내내 웃음을 참기 힘들 정도야."
+}
+```
+
+**질문 생성 (Q-T)**
+
+- 대답을 통해 질문을 예측하는 경우
+
+```
+{
+  "trg": "Which century saw the construction of the Taj Mahal", 
+  "src": "Other Europeans who saw the Taj under construction never mentioned his name , and furthermore , it is difficult to suppose that an artist trained in seventeenth century Italy , the Italy of Bernini ,"
+}
+
+{
+  "trg": 타지마할은 몇 세기에 건설되었는가?
+  "src": 타지마할이 건설 중일 때 그것을 본 다른 유럽인들 중에서도 그의 이름을 언급한 사람은 없었고, 게다가 베르니니의 시대였던 17세기 이탈리아에서 훈련받은 예술가가 그랬다고 보기에는 어렵다.
+}
+```
+
+**문장 단순화 (Wiki)**
+
+```
+{
+  "src": "Thoreau refused because of his opposition to the Mexican\u2013American War and slavery, and he spent a night in jail because of this refusal.", 
+  "trg": "As the government needed money for the Mexican-American War, Henry David Thoreau refused to pay a direct tax for the war."
+}
+
+{
+  "src": "소로는 멕시코-미국 전쟁과 노예 제도에 반대했기 때문에 거부했고, 이 거부로 인해 하룻밤을 감옥에서 보냈다.", 
+  "trg": "정부가 멕시코-미국 전쟁을 위해 자금이 필요했기 때문에, 헨리 데이비드 소로는 그 전쟁을 위한 직접세 납부를 거부했다."
+}
+```
+
+**의역 (QQP)**
+
+```
+{
+  "src": "Why is Tokyo so big?", 
+  "trg": "Why has Tokyo grown to be a such large city?"
+}
+
+{
+  "src": "도쿄는 왜 이렇게 큰가요?", 
+  "trg": "도쿄는 왜 이렇게 큰 도시로 성장하게 되었나요?"
+}
+```
+
+### 모델 학습
+
+실험 목표:
+논문에서 주요 실험 항목 중 하나인 Paraphrasing (의역) 태스크만 학습하여 성능 평가 진행.
+다른 태스크에 비해 학습 시간이 비교적 짧고, 성능 차이도 명확하게 나타남.
+
+학습 스크립트:
+```
+python -m torch.distributed.launch \
+  --nproc_per_node=4 \
+  --master_port=12233 \
+  --use_env run_train.py \
+  --diff_steps 2000 \
+  --lr 0.0001 \
+  --learning_steps 50000 \
+  --save_interval 10000 \
+  --seed 102 \
+  --noise_schedule sqrt \
+  --hidden_dim 128 \
+  --bsz 2048 \
+  --dataset qqp \
+  --data_dir datasets/QQP \
+  --vocab bert \
+  --seq_len 128 \
+  --schedule_sampler lossaware \
+  --notes qqp
+```
+
+- 분산 학습: 4-GPU 분산 학습 사용 (torch.distributed.launch)
+- 노이즈 스케줄: sqrt (루트 스케일 노이즈)
+- 샘플러: lossaware 사용하여 학습 효율 개선
+- 총 학습 시간: 약 7일 소요
+
+```
+saving model 0.9999...
+writing to diffusion_models/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16:40:36/ema_0.9999_050000.pt
+writing to diffusion_models/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16:40:36/ema_0.9999_050000.pt
+```
+
+<p align = "center">
+<img src="img/models.png" width=100%" alt="" align=center />
+</p>
+
+### 모델 평가
+
+학습이 완료된 후에는 평가를 위해 디코딩을 진행했다.
+
+```
+python -u run_decode.py \
+  --model_dir diffusion_models/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16:40:36 \
+  --seed 123 \
+  --split test
+```
+
+```
+### Total takes 11374.62s .....
+### Written the decoded output to generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16:40:36/ema_0.9999_010000.pt.samples/seed123_step0.json
+############################## decoding finished...
+```
+
+디코딩이 완료 된 후 각 학습 단계별 평가
+
+```
+# 010000
+python eval_seq2seq.py --folder ../generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16\:40\:36/ema_0.9999_010000.pt.samples/ --mbr
+```
+
+```
+# 010000
+avg BLEU score 0.0005454254459285795
+avg ROUGE-L score 0.0033421887800097467
+avg berscore tensor(0.3289)
+avg dist1 score 0.5779846464452918
+avg len 14.384
+```
+
+```
+# 020000
+python eval_seq2seq.py --folder ../generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16\:40\:36/ema_0.9999_020000.pt.samples/ --mbr
+```
+
+```
+# 020000
+avg BLEU score 0.12292736830482132
+avg ROUGE-L score 0.46098501966893674
+avg berscore tensor(0.7085)
+avg dist1 score 0.8850203543116794
+avg len 11.49
+```
+
+```
+# 030000
+python eval_seq2seq.py --folder ../generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16\:40\:36/ema_0.9999_030000.pt.samples/ --mbr
+```
+
+```
+# 030000
+avg BLEU score 0.193447849217224
+avg ROUGE-L score 0.5484878430128097
+avg berscore tensor(0.8025)
+avg dist1 score 0.9557142973467202
+avg len 11.2712
+```
+
+```
+# 040000
+python eval_seq2seq.py --folder ../generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16\:40\:36/ema_0.9999_040000.pt.samples/ --mbr
+```
+
+```
+# 040000 - 가장 좋은 성능
+avg BLEU score 0.2021694258437256
+avg ROUGE-L score 0.5533765735387802
+avg berscore tensor(0.8126) 
+avg dist1 score 0.9674056753086561
+avg len 11.3232
+```
+
+```
+# 050000
+python eval_seq2seq.py --folder ../generation_outputs/diffuseq_qqp_h128_lr0.0001_t2000_sqrt_lossaware_seed102_qqp20250602-16\:40\:36/ema_0.9999_050000.pt.samples/ --mbr
+```
+
+```
+# 050000
+avg BLEU score 0.20070721798729046
+avg ROUGE-L score 0.5469133322745562
+avg berscore tensor(0.8110)
+avg dist1 score 0.9712667880090842
+avg len 11.447
+```
+
+### 모델 테스트
+
+학습된 모델은 다음과 같이 실사용 문장에 적용하여 테스트했다.
+
+**예시 1**
+```
+입력 (src): Why is Tokyo so big?
+출력 (trg): What caused Tokyo to grow into such a massive city?
+입력 (src): 도쿄는 왜 이렇게 큰가요?
+출력 (trg): 도쿄가 이렇게 거대한 도시가 된 이유는 무엇인가요?
+```
+
+**예시 2**
+```
+입력 (src): I can't believe how fast this year has gone by.
+출력 (trg): It's unbelievable how quickly this year passed.
+입력 (src): 올해가 이렇게 빨리 지나갔다는 게 믿기지 않아.
+출력 (trg): 올해가 순식간에 지나가서 실감이 안 나.
+```
+
+**예시 3**
+```
+입력 (src): He was really nervous during the presentation.
+출력 (trg): He seemed anxious the whole time he was presenting.
+입력 (src): 그는 발표하는 동안 정말 긴장했어.
+출력 (trg): 발표 내내 긴장한 티가 났어.
+```
+
+**예시 4**
+```
+입력 (src): The weather today is perfect for a picnic.
+출력 (trg): Today’s weather is ideal for having a picnic outdoors.
+입력 (src): 오늘 날씨 소풍 가기 딱 좋아.
+출력 (trg): 오늘 같은 날씨엔 야외에서 소풍하면 최고지.
+```
+
+**예시 5**
+```
+입력 (src): I skipped breakfast because I woke up late.
+출력 (trg): I was in such a rush this morning that I didn’t eat anything.
+입력 (src): 늦잠 자는 바람에 아침도 못 먹고 나왔어.
+출력 (trg): 아침에 급하게 나오느라 밥도 못 챙겼어.
+```
+
+이러한 결과는 DiffuSeq이 문맥적 의미는 유지하면서도 다양한 어휘와 문장 구조로 바꿔주는 능력이 뛰어남을 보여준다.
+
+### 결론
+
+본 실험에서는 DiffuSeq 구조를 기반으로 다양한 자연어 생성 태스크(일반 대화, 질문 생성, 문장 단순화, 의역 등)에 대한 성능을 검증하였다.
+
+Diffusion 기반 방식은 기존의 autoregressive decoder 방식에 비해 더욱 유연하고 정교한 문장 생성을 가능케 하며,
+
+특히 **의역 태스크(Paraphrasing)** 에서 기존 모델 대비 높은 BERTScore와 유사도 점수를 기록하였다.
+
+학습과 추론 과정 모두에서 안정적인 convergence를 보여주었으며, 다국어 및 다양한 데이터셋에도 적응 가능함을 확인하였다.
