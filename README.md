@@ -393,57 +393,23 @@ avg dist1 score 0.9712667880090842
 avg len 11.447
 ```
 
-### 모델 테스트
+### 예시 결과
 
-학습된 모델은 다음과 같이 실사용 문장에 적용하여 테스트했다.
+DiffuSeq 모델은 문장 의미를 유지하면서 다양한 어휘와 구문 구조로 질문을 재구성하는 능력이 뛰어나다. 아래는 원문(Source), 모델이 생성한 문장(Recover), 그리고 참조 문장(Reference)의 비교 예시이다:
 
-**예시 1**
-```
-입력 (src): Why is Tokyo so big?
-출력 (trg): What caused Tokyo to grow into such a massive city?
-입력 (src): 도쿄는 왜 이렇게 큰가요?
-출력 (trg): 도쿄가 이렇게 거대한 도시가 된 이유는 무엇인가요?
-```
-
-**예시 2**
-```
-입력 (src): I can't believe how fast this year has gone by.
-출력 (trg): It's unbelievable how quickly this year passed.
-입력 (src): 올해가 이렇게 빨리 지나갔다는 게 믿기지 않아.
-출력 (trg): 올해가 순식간에 지나가서 실감이 안 나.
-```
-
-**예시 3**
-```
-입력 (src): He was really nervous during the presentation.
-출력 (trg): He seemed anxious the whole time he was presenting.
-입력 (src): 그는 발표하는 동안 정말 긴장했어.
-출력 (trg): 발표 내내 긴장한 티가 났어.
-```
-
-**예시 4**
-```
-입력 (src): The weather today is perfect for a picnic.
-출력 (trg): Today’s weather is ideal for having a picnic outdoors.
-입력 (src): 오늘 날씨 소풍 가기 딱 좋아.
-출력 (trg): 오늘 같은 날씨엔 야외에서 소풍하면 최고지.
-```
-
-**예시 5**
-```
-입력 (src): I skipped breakfast because I woke up late.
-출력 (trg): I was in such a rush this morning that I didn’t eat anything.
-입력 (src): 늦잠 자는 바람에 아침도 못 먹고 나왔어.
-출력 (trg): 아침에 급하게 나오느라 밥도 못 챙겼어.
-```
+| No. | Source (원문)                                                                       | Reference (참조 문장)                                                                                                       | Recover (생성 문장)                                                                                        |
+| --- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 1   | how can i be a good geologist? <br> **(어떻게 하면 좋은 지질학자가 될 수 있을까?)**                | what should i do to be a great geologist? <br> **(훌륭한 지질학자가 되려면 무엇을 해야 할까?)**                                           | what are some ways to a good geologist? <br> **(좋은 지질학자가 되는 몇 가지 방법은 무엇인가?)**                          |
+| 2   | how do i read and find my youtube comments? <br> **(내 유튜브 댓글을 어떻게 읽고 찾을 수 있을까?)** | how can i see all my youtube comments? <br> **(내 유튜브 댓글 전체를 어떻게 볼 수 있을까?)**                                             | how can i read my youtube comments? <br> **(내 유튜브 댓글을 어떻게 읽을 수 있을까?)**                                 |
+| 3   | what can make physics easy to learn? <br> **(물리를 쉽게 배우게 해주는 건 무엇일까?)**            | how can you make physics easy to learn? <br> **(어떻게 하면 물리를 쉽게 배울 수 있을까?)**                                              | what physics is make easy learn? <br> **(어떤 물리가 배우기 쉽게 만들까?)**                                         |
+| 4   | what was your first sexual experience like? <br> **(너의 첫 성경험은 어땠어?)**             | what was your first sexual experience? <br> **(너의 첫 성경험은 무엇이었어?)**                                                      | how was the first sexual experience you had had had for the first time? <br> **(처음 했던 첫 성경험은 어땠었었니?)** |
+| 5   | why do rockets look white? <br> **(로켓은 왜 흰색으로 보일까?)**                             | why are rockets and boosters painted white? <br> **(왜 로켓과 부스터는 흰색으로 칠해졌을까?)**                                           | why do some rockets and look white? <br> **(왜 어떤 로켓들은 흰색으로 보이기도 할까?)**                                 |                               |
 
 이러한 결과는 DiffuSeq이 문맥적 의미는 유지하면서도 다양한 어휘와 문장 구조로 바꿔주는 능력이 뛰어남을 보여준다.
 
 ### 결론
 
-본 실험에서는 DiffuSeq 구조를 기반으로 다양한 자연어 생성 태스크(일반 대화, 질문 생성, 문장 단순화, 의역 등)에 대한 성능을 검증하였다.
-
-Diffusion 기반 방식은 기존의 autoregressive decoder 방식에 비해 더욱 유연하고 정교한 문장 생성을 가능케 하며,
+Diffusion 기반 방식은 기존의 autoregressive decoder 방식에 비해 더욱 유연하고 정교한 문장 생성이 가능하다.
 
 특히 **의역 태스크(Paraphrasing)** 에서 기존 모델 대비 높은 BERTScore와 유사도 점수를 기록하였다.
 
